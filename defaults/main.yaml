@@ -21,3 +21,6 @@ ssh_key_private_filename: id_rsa
 
 ssh_key_public_content:
 ssh_key_public_filename: id_rsa.pub
+
+ssh_known_hosts_content:
+ssh_known_hosts_filename: known_hosts

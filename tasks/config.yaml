@@ -20,6 +20,15 @@
     owner: "{{ ssh_user_name }}"
     state: directory
 
+- name: Create ssh known_hosts file.
+  copy:
+    content: "{{ ssh_known_hosts_content }}"
+    dest: "{{ ssh_user_home }}/.ssh/{{ ssh_known_hosts_filename }}"
+    group: "{{ ssh_user_group }}"
+    mode: 0644
+    owner: "{{ ssh_user_name }}"
+  when: ssh_known_hosts_content
+
 - name: Create ssh private key.
   copy:
     content: "{{ ssh_key_private_content }}"
