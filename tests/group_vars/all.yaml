@@ -1,0 +1,3 @@
+---
+ssh_user_name: "{{ lookup('env', 'USER') }}"
+ssh_user_home: /tmp
