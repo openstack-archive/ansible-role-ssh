@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-ssh_user_name:
+ssh_user_name: 123
 ssh_user_home: "/home/{{ ssh_user_name }}"
 ssh_user_group: "{{ ssh_user_name }}"
 
