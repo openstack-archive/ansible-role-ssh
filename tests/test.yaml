@@ -16,6 +16,9 @@
   become: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+    ssh_user_name: "{{ lookup('env', 'USER') }}"
+    ssh_user_home: /tmp
+
   pre_tasks:
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
