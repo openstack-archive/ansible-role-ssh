@@ -13,12 +13,23 @@
 # under the License.
 ---
 - hosts: localhost
-  become: yes
+
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+
   pre_tasks:
+    - name: test
+      become: no
+      debug:
+        msg: "{{ lookup('env', 'USER') }}"
+
+    - name: test2
+      debug:
+        msg: "{{ ssh_user_name }}"
+
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
+      become: yes
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
