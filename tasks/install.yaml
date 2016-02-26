@@ -1,4 +1,4 @@
-# Copyright 2015 Red Hat, Inc.
+# Copyright 2016 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,11 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yaml"
+- name: Define ssh_package_name.
+  set_fact:
+    ssh_package_name: "{{ __ssh_package_name | list }}"
+  when: ssh_package_name is not defined
 
-- include: install.yaml
-  become: yes
-
-- include: config.yaml
-  become: yes
+- name: Install ssh from package.
+  package:
+    name: "{{ ssh_package_name }}"
+    state: installed
