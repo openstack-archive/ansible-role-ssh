@@ -21,28 +21,28 @@
     state: directory
 
 - name: Create ssh known_hosts file.
-  copy:
-    content: "{{ ssh_known_hosts_content }}"
-    dest: "{{ ssh_user_home }}/.ssh/{{ ssh_known_hosts_filename }}"
+  template:
+    dest: "{{ ssh_known_hosts_dest }}"
     group: "{{ ssh_user_group }}"
     mode: 0644
     owner: "{{ ssh_user_name }}"
+    src: "{{ ssh_known_hosts_src }}"
   when: ssh_known_hosts_content
 
 - name: Create ssh private key.
-  copy:
-    content: "{{ ssh_key_private_content }}"
-    dest: "{{ ssh_user_home }}/.ssh/{{ ssh_key_private_filename }}"
+  template:
+    dest: "{{ ssh_key_private_dest }}"
     group: "{{ ssh_user_group }}"
     mode: 0600
     owner: "{{ ssh_user_name }}"
+    src: "{{ ssh_key_private_src }}"
   when: ssh_key_private_content
 
 - name: Create ssh public key.
-  copy:
-    content: "{{ ssh_key_public_content }}"
-    dest: "{{ ssh_user_home }}/.ssh/{{ ssh_key_public_filename }}"
+  template:
+    dest: "{{ ssh_key_public_dest }}"
     group: "{{ ssh_user_group }}"
     mode: 0644
     owner: "{{ ssh_user_name }}"
+    src: "{{ ssh_key_public_src }}"
   when: ssh_key_public_content

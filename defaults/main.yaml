@@ -17,10 +17,13 @@ ssh_user_home: "/home/{{ ssh_user_name }}"
 ssh_user_group: "{{ ssh_user_name }}"
 
 ssh_key_private_content:
-ssh_key_private_filename: id_rsa
+ssh_key_private_dest: "{{ ssh_user_home }}/.ssh/id_rsa"
+ssh_key_private_src: id_rsa.j2
 
 ssh_key_public_content:
-ssh_key_public_filename: id_rsa.pub
+ssh_key_public_dest: "{{ ssh_user_home }}/.ssh/id_rsa.pub"
+ssh_key_public_src: id_rsa.pub.j2
 
 ssh_known_hosts_content:
-ssh_known_hosts_filename: known_hosts
+ssh_known_hosts_dest: "{{ ssh_user_home }}/.ssh/known_hosts"
+ssh_known_hosts_src: known_hosts.j2
