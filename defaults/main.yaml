@@ -12,6 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# tasks/main.yaml
+ssh_task_manager:
+  - install
+  - config
+
 ssh_user_name:
 ssh_user_home: "/home/{{ ssh_user_name }}"
 ssh_user_group: "{{ ssh_user_name }}"

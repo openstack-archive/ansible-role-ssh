@@ -18,6 +18,7 @@
   when: ssh_package_name is not defined
 
 - name: Install ssh from package.
+  become: yes
   package:
     name: "{{ ssh_package_name }}"
     state: installed

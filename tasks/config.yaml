@@ -13,6 +13,7 @@
 # under the License.
 ---
 - name: Create ssh directory.
+  become: yes
   file:
     dest: "{{ ssh_user_home }}/.ssh"
     group: "{{ ssh_user_group }}"
@@ -21,6 +22,7 @@
     state: directory
 
 - name: Create ssh known_hosts file.
+  become: yes
   template:
     dest: "{{ ssh_known_hosts_dest }}"
     group: "{{ ssh_user_group }}"
@@ -30,6 +32,7 @@
   when: ssh_known_hosts_content
 
 - name: Create ssh private key.
+  become: yes
   template:
     dest: "{{ ssh_key_private_dest }}"
     group: "{{ ssh_user_group }}"
@@ -39,6 +42,7 @@
   when: ssh_key_private_content
 
 - name: Create ssh public key.
+  become: yes
   template:
     dest: "{{ ssh_key_public_dest }}"
     group: "{{ ssh_user_group }}"
