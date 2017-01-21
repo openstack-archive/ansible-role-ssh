@@ -29,7 +29,7 @@
     mode: 0644
     owner: "{{ ssh_user_name }}"
     src: "{{ ssh_known_hosts_src }}"
-  when: ssh_known_hosts_content
+  when: ssh_known_hosts_content | default('') != ''
 
 - name: Create ssh private key.
   become: yes
@@ -39,7 +39,7 @@
     mode: 0600
     owner: "{{ ssh_user_name }}"
     src: "{{ ssh_key_private_src }}"
-  when: ssh_key_private_content
+  when: ssh_key_private_content | default('') != ''
 
 - name: Create ssh public key.
   become: yes
@@ -49,4 +49,4 @@
     mode: 0644
     owner: "{{ ssh_user_name }}"
     src: "{{ ssh_key_public_src }}"
-  when: ssh_key_public_content
+  when: ssh_key_public_content | default('') != ''
