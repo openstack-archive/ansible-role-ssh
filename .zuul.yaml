@@ -1,0 +1,37 @@
+- job:
+    name: ansible-role-ssh
+    run: tests/playbooks/run.yaml
+
+- job:
+    name: ansible-role-ssh-fedora-27
+    parent: ansible-role-ssh
+    nodeset: fedora-27
+
+- job:
+    name: ansible-role-ssh-ubuntu-bionic
+    parent: ansible-role-ssh
+    nodeset: ubuntu-bionic
+
+- job:
+    name: ansible-role-ssh-ubuntu-xenial
+    parent: ansible-role-ssh
+    nodeset: ubuntu-xenial
+
+- project:
+    name: openstack/ansible-role-ssh
+    templates:
+      - windmill-jobs-fedora-27
+      - windmill-jobs-bionic
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-ssh-fedora-27
+        - ansible-role-ssh-ubuntu-bionic
+        - ansible-role-ssh-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-ssh-fedora-27
+        - ansible-role-ssh-ubuntu-bionic
+        - ansible-role-ssh-ubuntu-xenial
+        - tox-linters
