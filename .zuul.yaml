@@ -5,9 +5,9 @@
       - zuul: openstack/ansible-role-ssh
 
 - job:
-    name: ansible-role-ssh-fedora-27
+    name: ansible-role-ssh-fedora-latest
     parent: ansible-role-ssh
-    nodeset: fedora-27
+    nodeset: fedora-latest
 
 - job:
     name: ansible-role-ssh-ubuntu-bionic
@@ -22,18 +22,18 @@
 - project:
     name: openstack/ansible-role-ssh
     templates:
-      - windmill-jobs-fedora-27
+      - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
       - windmill-jobs-xenial
     check:
       jobs:
-        - ansible-role-ssh-fedora-27
+        - ansible-role-ssh-fedora-latest
         - ansible-role-ssh-ubuntu-bionic
         - ansible-role-ssh-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
-        - ansible-role-ssh-fedora-27
+        - ansible-role-ssh-fedora-latest
         - ansible-role-ssh-ubuntu-bionic
         - ansible-role-ssh-ubuntu-xenial
         - tox-linters
