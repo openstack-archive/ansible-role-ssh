@@ -14,26 +14,17 @@
     parent: ansible-role-ssh
     nodeset: ubuntu-bionic
 
-- job:
-    name: ansible-role-ssh-ubuntu-xenial
-    parent: ansible-role-ssh
-    nodeset: ubuntu-xenial
-
 - project:
-    name: openstack/ansible-role-ssh
     templates:
       - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
-      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-ssh-fedora-latest
         - ansible-role-ssh-ubuntu-bionic
-        - ansible-role-ssh-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-ssh-fedora-latest
         - ansible-role-ssh-ubuntu-bionic
-        - ansible-role-ssh-ubuntu-xenial
         - tox-linters
