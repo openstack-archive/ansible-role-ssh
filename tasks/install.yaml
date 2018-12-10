@@ -21,4 +21,4 @@
   become: yes
   package:
     name: "{{ ssh_package_name }}"
-    state: installed
+    state: present
