@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define ssh_package_name.
+- name: Define ssh_package_name
   set_fact:
     ssh_package_name: "{{ __ssh_package_name }}"
   when: ssh_package_name is not defined
 
-- name: Install ssh from package.
+- name: Install ssh from package
   become: yes
   package:
     name: "{{ ssh_package_name }}"

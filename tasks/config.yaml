@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create ssh directory.
+- name: Create ssh directory
   become: yes
   file:
     dest: "{{ ssh_user_home }}/.ssh"
@@ -21,7 +21,7 @@
     owner: "{{ ssh_user_name }}"
     state: directory
 
-- name: Create ssh known_hosts file.
+- name: Create ssh known_hosts file
   become: yes
   template:
     dest: "{{ ssh_known_hosts_dest }}"
@@ -31,7 +31,7 @@
     src: "{{ ssh_known_hosts_src }}"
   when: ssh_known_hosts_content | default(False)
 
-- name: Create ssh private key.
+- name: Create ssh private key
   become: yes
   template:
     dest: "{{ ssh_key_private_dest }}"
@@ -41,7 +41,7 @@
     src: "{{ ssh_key_private_src }}"
   when: ssh_key_private_content | default(False)
 
-- name: Create ssh public key.
+- name: Create ssh public key
   become: yes
   template:
     dest: "{{ ssh_key_public_dest }}"
