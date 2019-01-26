@@ -21,6 +21,16 @@
     owner: "{{ ssh_user_name }}"
     state: directory
 
+- name: Create ssh authorized_keys file
+  become: yes
+  template:
+    dest: "{{ ssh_authorized_keys_dest }}"
+    group: "{{ ssh_user_group }}"
+    mode: 0600
+    owner: "{{ ssh_user_name }}"
+    src: "{{ ssh_authorized_keys_src }}"
+  when: ssh_authorized_keys_content | default(False)
+
 - name: Create ssh known_hosts file
   become: yes
   template:
